@@ -1,0 +1,7 @@
+#!/bin/bash
+
+curl https://www.publicdomainpictures.net/pictures/50000/velka/sunset-5-1369039079YoH.jpg > sunset.jpg
+
+aws s3 cp sunset.jpg s3://ds2002-mqq9sb/
+
+aws s3 presign --expires-in 604800 s3://ds2002-mqq9sb/sunset.jpg

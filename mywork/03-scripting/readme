@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# This script is designed to output favorite number.
+# Author: Maggie Crowner
+# Last updated: 2/6/2024
+
+read -p "What is your favorite number?" FAVNUM
+
+echo "Hey $USER I hear your favorite number is $FAVNUM"
+
