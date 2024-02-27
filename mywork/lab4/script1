@@ -5,3 +5,5 @@ curl https://www.publicdomainpictures.net/pictures/50000/velka/sunset-5-13690390
 aws s3 cp sunset.jpg s3://ds2002-mqq9sb/
 
 aws s3 presign --expires-in 604800 s3://ds2002-mqq9sb/sunset.jpg
+
+# link: https://ds2002-mqq9sb.s3.us-east-1.amazonaws.com/sunset.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAZI2LHW67AG663IOG%2F20240227%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240227T210302Z&X-Amz-Expires=604800&X-Amz-SignedHeaders=host&X-Amz-Security-Token=FwoGZXIvYXdzEAYaDKQ1pq3sx43Jr9LILSLEASQlYJLKVx%2BujEyU30R6lxGRCLNhzTaSaAbC571x4KAX0Js55vMAwRZnEsDa5Ii3X8muw%2FMA3mVHPTCOygLR6DCs676QFVEQn3oCbgURFvp2%2Btc8U7%2BiiTBT92B%2FkBulX8Y4hijI7DlQJ%2FlIUq%2FiAU%2FlJWT4gW9l3Z14j6CDGXIELI5W9QwchxlET%2F%2FUNqLwX%2F8Dz4S9icJWawFdD3TEsNi%2FC57Yuj1h0nP361QQEnGz2vtFIZRxqoiUOqJhhNwkqSW%2BuOEo8of5rgYyLcTsLwEWfbiktEX%2BfClFykSboej4kI04byYQXbPmHccVcJPc%2F%2BMtoOb2WW3QbA%3D%3D&X-Amz-Signature=ac009703431e4baf1c788adf8bc79a1e481c6da368771f648c6eccc14010dcb3
