@@ -1,0 +1,32 @@
+#!/opt/anaconda3/bin/python3
+
+import urllib.request
+import boto3
+
+url = 'https://th.bing.com/th/id/R.fc2396311f5b8e5b04295bd0da953505?rik=uZlQQSdemAYY7Q&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2f7%2f79%2fFireworks_-_Adelaide_Skyshow_2010.jpg&ehk=CpxS7VxFJ1Sr1pJjYayz6071oIlujCk4v2T8SlZnAXY%3d&risl=&pid=ImgRaw&r=0'
+file_name = "fireworks.jpg"
+
+urllib.request.urlretrieve(url, file_name)
+
+s3 = boto3.client('s3', region_name="us-east-1")
+
+bucket = 'ds2002-mqq9sb'
+local_file = "fireworks.jpg"
+
+with open(file_name, 'rb') as file:
+    resp = s3.put_object(Body=file, 
+                         Bucket=bucket,
+                         Key=file_name,
+                         ContentType='image/jpg')
+
+expires_in = 604800
+
+response = s3.generate_presigned_url(
+    'get_object',
+    Params={'Bucket': bucket, 'Key': local_file},
+    ExpiresIn=expires_in
+    )
+
+print(response)
+
+# link: https://ds2002-mqq9sb.s3.amazonaws.com/fireworks.jpg?AWSAccessKeyId=ASIAZI2LHW67N5WGJJOS&Signature=hn9tPavQh4qmUUI5EUioCcpzzV0%3D&x-amz-security-token=FwoGZXIvYXdzEBoaDGIGPXqqrs1HSFd6JyLEAeWjgsNYeQowD7oeut1LTau0nGk9tWeL99%2Fh7%2BglCtpb%2B8W9zH9iQuCfES8hqln9Th8HKnXiErhdbv5idQMSQN%2BlDEFlJEyIXFD5JEVvhahSJNuwC%2B8kHOmVPIcF1NBMwOi0gTpvugwlcz3EyoGNtH8X5PmkOomJ6zEm07cfuATfeu9fSTpkjQWk%2FxkcLO3yp27Avym1wv%2B9sKLygmt0DpyhqljdFizixV1QhZat1UpYwLjGJqAyCBepPV%2B2s5c92wMqPwMou8b9rgYyLeV8avY2l%2FvvfNMNuvcKkxprJemUw0jsJU5%2Fxz%2FCOmI844YbHuPVx%2FruDV7M3w%3D%3D&Expires=1709744494
